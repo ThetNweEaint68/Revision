@@ -33,7 +33,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/home') }}">Home</a></li>&nbsp;&nbsp;
-                        <li><a href="{{ url('/article') }}">Add Article</a></li>
+                        <li><a href="{{ url('/articles/create') }}">Add Article</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,7 +59,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('/profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="{{ url('/profiles/{id}') }}">User Profile</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

@@ -20,6 +20,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
+    
     */
 
     use RegistersUsers;
@@ -75,6 +76,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'avatar'=> $data['avatar'],
             'sex' => $data['sex'],
+            'admin' => false,
             'birthday' => $data['birthday'],
             'age' => $data['age'],
             'address' => $data['address'],

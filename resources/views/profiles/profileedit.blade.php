@@ -1,69 +1,135 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="wrapper">
-              <div id="page" class="container">
-              <h1 class="heading has-text-weight-bold">Update Form</h1>
-              <br>
-              <form class="" action="{{ route('profile.update', ['user' => $user->id]) }}" method="POST">
-                @csrf
-                @method('PATCH')
-              <div class="field">
-                <label class="label" for="name">Name</label>
-                <div class="control">
-                  <input class="input" type="text" name="name" id="name" value="{{$user->name}}">
-                </div>
-              </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Update Profile</div>
 
-              <div class="field">
-                <label class="label" for="age">Age</label>
-                <div class="control">
-                  <input class="input" type="text" name="age" id="age" value="{{$user->age}}">
-                </div>
-              </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('profile.update', ['user' => $user->id]) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <div class="col-md-6">
+                              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
+                            </div>
+                        </div>
 
-              <div class="field">
-                <label class="label" for="birthday">Birthday</label>
-                <div class="control">
-                  <input class="input" type="date" name="birthday" id="birthday" value="{{$user->birthday}}">
-                </div>
-              </div>
+                        <div class="form-group row">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+                            <div class="col-md-6">
+                              <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ $user->avatar }}" required autocomplete="avatar" autofocus>
+                            </div>
+                        </div>
 
-              <div class="field">
-                <label class="label" for="email">Email</label>
-                <div class="control">
-                  <input class="input" type="email" name="email" id="email" value="{{$user->email}}">
-                </div>
-              </div>
+                         <div class="form-group row ">
+                                <div class="col-md-12">
+                                    <label for="sex" class= "col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
+                            <div class="form-check form-check-inline" >
+                                <input class="form-check-input" type="radio" name="sex" value="male">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sex" value="female">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                                </div>
 
-              <div class="field">
-                <label class="label" for="address">Address</label>
-                <div class="control">
-                  <input class="input" type="text" name="address" id="address" value="{{$user->address}}">
-                </div>
-              </div>
+                        </div>
 
-              <div class="field">
-                <label class="label" for="phone">Phone</label>
-                <div class="control">
-                  <input class="input" type="text" name="phone" id="phone" value="{{$user->phone}}">
-                </div>
-              </div>
+                         <div class="form-group row">
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
 
-              <div class="field">
-                <label class="label" for="password">Password</label>
-                <div class="control">
-                  <input class="input" type="password" name="password" id="password" value="{{$user->password}}">
-                </div>
-              </div>
-              <br>
-              <div class="field is-grouped">
-                <div class="control">
-                  <button class="button is-link" type="submit">Update</button>
-                </div>
-              </div>
+                            <div class="col-md-6">
+                                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="birthday" autofocus>
 
-              </form>
-              </div> 
+                                @error('birthday')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age
+                            ') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+
+                                @error('age')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telephone') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone" autofocus>
+
+                                @error('telephone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Update') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            @endsection
+        </div>
+    </div>
+</div>
+@endsection

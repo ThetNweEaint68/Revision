@@ -20,12 +20,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 //Article
-
-
-
+Route::get('/articles','ArticleController@index')->name('articles.index');
+Route::post('/articles','ArticleController@store')->name('articles.store');
+Route::get('/articles/create','ArticleController@create')->name('articles.create');
+Route::get('/articles/{article}','ArticleController@show')->name('articles.show');
+Route::get('/articles/{article}/edit','ArticleController@edit')->name('articles.edit');
+Route::put('/articles/{article}','ArticleController@update')->name('articles.update');
 //Profile
-Route::get('/profile', 'ProfileController@index');
+Route::get('/userlist', 'ProfileController@index');
+Route::get('/profiles/{name}', 'ProfileController@show');
 Route::get('/profiles/{user}/edit','ProfileController@edit')->name('profile.edit');
 Route::patch('/profiles/{user}','ProfileController@update')->name('profile.update');
+//Comment
+Route::post('/articles/{article}/comments', 'CommentController@store')->name('comments.store');
