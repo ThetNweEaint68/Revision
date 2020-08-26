@@ -74,7 +74,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'avatar'=> $data['avatar'],
+            'avatar'=> $data['avatar']->store('avatars'),
             'sex' => $data['sex'],
             'admin' => false,
             'birthday' => $data['birthday'],
@@ -83,7 +83,8 @@ class RegisterController extends Controller
             'telephone' => $data['telephone'],
             'password' => Hash::make($data['password']),
         ]);
-
-        request('avatar')->store('avatars');
+        $avatar = $data['avatar']->file('avatar');
+        $filename = time() . '.' . $avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(300, 300)->save(public_path('/avatars/'.$filename));
     }
 }

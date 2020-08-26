@@ -33,6 +33,7 @@
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary">Add Comment</button>
+            <a href="/articles/{{$article->id}}/edit" class="btn btn-primary">Edit</a></button>
           </div>
         </form>
       </div>

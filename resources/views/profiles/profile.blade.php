@@ -8,7 +8,7 @@
                 <div class="card-header">Profile</div>
                 <div class="profile-header-container">
                     <div class="profile-header-img">
-                        <img class="rounded-circle" src="/storage/avatars/{{ $user->avatar }}" /><br>
+                        <img class="rounded-circle" src="{{ route('profile.showAvatar', $user->id) }}" / width="150" height="150"><br>
                         <div class="rank-label-container">
                             <span class="label label-default rank-label">{{$user->name}}</span><br>
                             <span class="label label-default rank-label">{{$user->sex}}</span><br>

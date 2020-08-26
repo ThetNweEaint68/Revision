@@ -8,16 +8,16 @@ use App\Article;
 
 class ArticleController extends Controller
 {
-	 public function __construct()
+     public function __construct()
     {
         $this->middleware('auth'); // IMPORTANT!
     }
 
     public function index()
     {
-    	$articles = Article::latest()->get();
+        $articles = Article::latest()->get();
 
-    	return view('articles.index', ['articles'=>$articles]);
+        return view('articles.index', ['articles'=>$articles]);
     }
 
     public function create()
@@ -50,7 +50,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-    	return view('articles.edit', compact('article'));
+        return view('articles.edit', compact('article'));
     }
 
     public function update(Request $request, $id)

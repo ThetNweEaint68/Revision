@@ -32,8 +32,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/home') }}">Home</a></li>&nbsp;&nbsp;
-                        <li><a href="{{ url('/articles/create') }}">Add Article</a></li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -49,6 +48,7 @@
                                 </li>
                             @endif
                         @else
+                            <a class="nav-link" href="{{ url('/userlist') }}">Userlist</a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -59,7 +59,8 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('/profiles/{id}') }}">User Profile</a>
+                                    <a class="dropdown-item" href="{{ url('/articles') }}">Article</a>
+                                    <a class="dropdown-item" href="{{ url('/articles/create') }}">Add article</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
