@@ -8,7 +8,7 @@
                 <div class="card-header">Update Profile</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('profile.update', $user->id) }}">
+                    <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">
@@ -67,13 +67,6 @@
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telephone') }}</label>
                             <div class="col-md-6">
                                 <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ $user->telephone }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required="">
                             </div>
                         </div>
 

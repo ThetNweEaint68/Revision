@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 
-use Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller
 {
@@ -19,14 +19,14 @@ class ProfileController extends Controller
     {
         $users = User::all()->toArray();
         
-        return view('profiles.userlist',compact('users'));
+        return view('profiles.index',compact('users'));
     }
 
     public function show(User $user)
     {
-        //$user = User::findOrFail($id);
+        //$user = User::findOrFail($user);
     
-        return view('profiles.profile', compact('user'));
+        return view('profiles.show', compact('user'));
     }
 
     public function showAvatar($id)
@@ -41,7 +41,7 @@ class ProfileController extends Controller
     {
         //$user = User::findOrFail($id);
 
-        return view('profiles.profileedit', compact('user'));
+        return view('profiles.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -53,21 +53,21 @@ class ProfileController extends Controller
         $users->birthday = request('birthday');
         $users->address = request('address');
         $users->telephone = request('telephone');
-        $users->password = request('password');
 
-        if($request->hasfile('avatar')){
+        if ($request->hasfile('avatar')) {
             $file = $request->file('avatar');
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            //Image::make($avatar)->resize(100,100)->save(public_path("/app/avatars/" .$filename));
-            $file->move('avatars', $filename);
-            $users->avatar = $filename;
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $filepath = $file->storeAs('avatars', $filename);
+            Image::make($file)->resize(300, 300)->save($filepath);
+            $users->avatar = $filepath;
         }
+
         $users->save();
 
         return back();
     }
 
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         $user = User::find($id);
         $user->delete();

@@ -61,7 +61,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ url('/articles') }}">Article</a>
                                     <a class="dropdown-item" href="{{ url('/articles/create') }}">Add article</a>
-
+                                   
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
